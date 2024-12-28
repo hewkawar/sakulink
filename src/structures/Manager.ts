@@ -270,6 +270,7 @@ export class Manager extends EventEmitter {
 			defaultSearchPlatform: "youtube music",
 			autoMove: true,
 			autoResume: true,
+			shards: 0,
 			...options,
 		};
 
@@ -300,7 +301,7 @@ export class Manager extends EventEmitter {
 
 		if (!this.options.clientId) throw new Error('"clientId" is not set. Pass it in Manager#init() or as a option in the constructor.');
 
-		this.db = new Database(this.options.clientId);
+		this.db = new Database(this.options.clientId, (this.options.shards ?? 0));
 
 		for (const node of this.nodes.values()) {
 			try {

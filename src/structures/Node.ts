@@ -592,7 +592,7 @@ export class Node {
 	 * @return {Promise<void>} A promise that resolves when the autoplay is handled.
 	 */
 	private async handleAutoplay(player: Player, track: Track | UnresolvedTrack): Promise<void> {
-		const base = "https://www.youtube.com/watch?v=ArXS-FI3ADo";
+		const base = "https://www.youtube.com/watch?v=H58vbez_m4E";
 		const getMixUrl = (identifier: string) => `https://www.youtube.com/watch?v=${identifier}&list=RD${identifier}`;
 		const findMix = async (): Promise<SearchResult> => {
 			let mixUrl: string;

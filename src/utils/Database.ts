@@ -6,10 +6,12 @@ type Data = Record<string, any>;
 export class Database {
 	public data: Data = {};
 	public id: string;
+	public shards: number;
 
-	constructor(clientId: string) {
+	constructor(clientId: string, shards: number) {
 		this.fetch();
 		this.id = clientId;
+		this.shards = shards;
 	}
 
 	set<T>(key: string, value: T): void {
@@ -76,7 +78,7 @@ export class Database {
 	}
 
 	private getFilePath() {
-		return path.join(__dirname, "../datastore", `database-${this.id}.json`);
+		return path.join(__dirname, "../datastore", `database-${this.shards}-${this.id}.json`);
 	}
 
 	fetch() {
