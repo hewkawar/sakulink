@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   publish-package:
@@ -38,6 +38,10 @@ jobs:
       - name: Build
         id: ts-build
         run: bun run build
+
+      - name: Login
+        id: login
+        run: npm login --registry=https://npm.pkg.github.com --scope=@${{ github.actor }} --always-auth
 
       - name: Publish
         id: publish
