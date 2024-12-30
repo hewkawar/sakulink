@@ -592,6 +592,13 @@ export class Player {
 		return this;
 	}
 
+	public skip(): this {
+		this.queue.shift();
+		this.stop();
+
+		return this;
+	}
+
 	/**
 	 * Seeks to a specific position in the current track.
 	 *
