@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: 
 
 jobs:
   publish-package:
@@ -15,6 +16,8 @@ jobs:
       packages: write
       attestations: write
       id-token: write
+      actions: write
+
     steps:
       - name: Checkout
         id: checkout
