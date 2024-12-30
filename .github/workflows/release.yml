@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: "22"
           registry-url: "https://npm.pkg.github.com"
+          scope: "@${{ github.actor }}"
 
       - uses: oven-sh/setup-bun@v2
 
