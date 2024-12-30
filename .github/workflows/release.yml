@@ -3,9 +3,6 @@ name: Release package
 on:
   release:
     types: [published]
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
