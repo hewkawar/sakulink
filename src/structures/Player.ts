@@ -598,13 +598,17 @@ export class Player {
 	 * @returns {this} - The player instance.
 	 */
 	public skip(): this {
-		if (this.queue.size === 0) {
-			this.stop();
-			return this;
-		}
+		const nextTrack = this.queue.shift();
 
-		this.queue.shift();
-		this.stop();
+		if (!nextTrack) this.stop();
+
+		this.queue.current = nextTrack;
+		this.node.rest.updatePlayer({
+			guildId: this.guild,
+			data: {
+				encodedTrack: nextTrack.track
+			}
+		});
 
 		return this;
 	}
