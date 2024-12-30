@@ -592,7 +592,17 @@ export class Player {
 		return this;
 	}
 
+
+	/**
+	 * Plays the next track in the queue.
+	 * @returns {this} - The player instance.
+	 */
 	public skip(): this {
+		if (this.queue.size === 0) {
+			this.stop();
+			return this;
+		}
+
 		this.queue.shift();
 		this.stop();
 
