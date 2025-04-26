@@ -1,4 +1,4 @@
-import { LoadType, Plugin, Structure, TrackData, TrackEndEvent, TrackExceptionEvent, TrackStartEvent, TrackStuckEvent, TrackUtils, VoicePacket, VoiceServer, WebSocketClosedEvent } from "./Utils";
+import { ErrorLoadTypeData, LoadType, Plugin, Structure, TrackData, TrackEndEvent, TrackExceptionEvent, TrackStartEvent, TrackStuckEvent, TrackUtils, VoicePacket, VoiceServer, WebSocketClosedEvent } from "./Utils";
 import { Collection } from "@discordjs/collection";
 import { EventEmitter } from "events";
 import { Node, NodeOptions } from "./Node";
@@ -348,6 +348,7 @@ export class Manager extends EventEmitter {
 
 			let searchData = [];
 			let playlistData: PlaylistRawData | undefined;
+			let errorData: ErrorLoadTypeData;
 
 			switch (res.loadType) {
 				case "search":
@@ -361,6 +362,8 @@ export class Manager extends EventEmitter {
 				case "playlist":
 					playlistData = res.data as PlaylistRawData;
 					break;
+				case "error":
+					errorData = res.data as ErrorLoadTypeData;
 			}
 
 			// Build the tracks from the search data
@@ -383,6 +386,7 @@ export class Manager extends EventEmitter {
 				loadType: res.loadType,
 				tracks: tracks || playlistData!.tracks.map((track) => TrackUtils.build(track, requester)),
 				playlist,
+				error: errorData
 			};
 
 			return result;
@@ -644,7 +648,7 @@ export interface LavalinkResponse {
 	/**
 	 * The data payload.
 	 */
-	data: TrackData[] | PlaylistRawData;
+	data: TrackData[] | PlaylistRawData | ErrorLoadTypeData;
 }
 
 /**
@@ -663,6 +667,10 @@ export interface SearchResult {
 	 * The playlist data, if available.
 	 */
 	playlist?: PlaylistData;
+	/**
+	 * The error data, if available.
+	 */
+	error?: ErrorLoadTypeData;
 }
 
 /**

@@ -274,14 +274,14 @@ export class Plugin {
 	 *
 	 * @param {Manager} manager - The manager to load the plugin with.
 	 */
-	public load(manager: Manager): void {}
+	public load(manager: Manager): void { }
 
 	/**
 	 * Unloads the plugin using the provided manager.
 	 *
 	 * @param {Manager} manager - The manager to unload the plugin with.
 	 */
-	public unload(manager: Manager): void {}
+	public unload(manager: Manager): void { }
 }
 
 const structures = {
@@ -386,6 +386,12 @@ export type TrackEndReason =
 	| "cleanup";
 
 export type Severity = "common" | "suspicious" | "fault";
+
+export interface ErrorLoadTypeData {
+	message: string;
+	severity: string;
+	cause: string;
+}
 
 export interface TrackData {
 	/**
