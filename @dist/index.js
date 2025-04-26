@@ -20,5 +20,5 @@ __exportStar(require("./structures/Node"), exports);
 __exportStar(require("./structures/Player"), exports);
 __exportStar(require("./structures/Queue"), exports);
 __exportStar(require("./structures/Utils"), exports);
-exports.version = "1.2.12";
+exports.version = "1.2.15";
 //# sourceMappingURL=index.js.map

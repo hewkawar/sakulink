@@ -37,6 +37,11 @@ export type PlayerEvents = TrackStartEvent | TrackEndEvent | TrackStuckEvent | T
 export type PlayerEventType = "TrackStartEvent" | "TrackEndEvent" | "TrackExceptionEvent" | "TrackStuckEvent" | "WebSocketClosedEvent";
 export type TrackEndReason = "finished" | "loadFailed" | "stopped" | "replaced" | "cleanup";
 export type Severity = "common" | "suspicious" | "fault";
+export interface ErrorLoadTypeData {
+    message: string;
+    severity: string;
+    cause: string;
+}
 export interface TrackData {
     encoded: string;
     info: TrackDataInfo;

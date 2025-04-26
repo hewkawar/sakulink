@@ -101,6 +101,7 @@ class Manager extends events_1.EventEmitter {
                 }
                 let searchData = [];
                 let playlistData;
+                let errorData;
                 switch (res.loadType) {
                     case "search":
                         searchData = res.data;
@@ -111,6 +112,8 @@ class Manager extends events_1.EventEmitter {
                     case "playlist":
                         playlistData = res.data;
                         break;
+                    case "error":
+                        errorData = res.data;
                 }
                 const tracks = searchData.map((track) => Utils_1.TrackUtils.build(track, requester));
                 const playlist = res.loadType === "playlist"
@@ -125,6 +128,7 @@ class Manager extends events_1.EventEmitter {
                     loadType: res.loadType,
                     tracks: tracks || playlistData.tracks.map((track) => Utils_1.TrackUtils.build(track, requester)),
                     playlist,
+                    error: errorData
                 };
                 return result;
             }

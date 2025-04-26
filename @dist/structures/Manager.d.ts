@@ -1,4 +1,4 @@
-import { LoadType, Plugin, TrackData, TrackEndEvent, TrackExceptionEvent, TrackStartEvent, TrackStuckEvent, VoicePacket, VoiceServer, WebSocketClosedEvent } from "./Utils";
+import { ErrorLoadTypeData, LoadType, Plugin, TrackData, TrackEndEvent, TrackExceptionEvent, TrackStartEvent, TrackStuckEvent, VoicePacket, VoiceServer, WebSocketClosedEvent } from "./Utils";
 import { Collection } from "@discordjs/collection";
 import { EventEmitter } from "events";
 import { Node, NodeOptions } from "./Node";
@@ -79,12 +79,13 @@ export interface SearchQuery {
 }
 export interface LavalinkResponse {
     loadType: LoadType;
-    data: TrackData[] | PlaylistRawData;
+    data: TrackData[] | PlaylistRawData | ErrorLoadTypeData;
 }
 export interface SearchResult {
     loadType: LoadType;
     tracks: Track[];
     playlist?: PlaylistData;
+    error?: ErrorLoadTypeData;
 }
 export interface PlaylistRawData {
     info: {
